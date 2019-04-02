@@ -30,6 +30,7 @@ class MamlasController extends AppController
     ];
     $mamlas = $this->paginate($this->Mamlas);
 
+
     $this->set(compact('mamlas'));
   }
 

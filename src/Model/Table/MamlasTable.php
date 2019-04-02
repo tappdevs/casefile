@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -27,78 +28,84 @@ use Cake\Validation\Validator;
 class MamlasTable extends Table
 {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
-    public function initialize(array $config)
-    {
-        parent::initialize($config);
+  /**
+   * Initialize method
+   *
+   * @param array $config The configuration for the Table.
+   * @return void
+   */
 
-        $this->setTable('mamlas');
-        $this->setDisplayField('title');
-        $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
+  public function initialize(array $config)
+  {
+    parent::initialize($config);
 
-        $this->belongsTo('Badis', [
-            'foreignKey' => 'badis_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsToMany('Ashamis', [
-            'foreignKey' => 'mamla_id',
-            'targetForeignKey' => 'ashami_id',
-            'joinTable' => 'mamlas_ashamis'
-        ]);
-        $this->belongsToMany('Dharas', [
-            'foreignKey' => 'mamla_id',
-            'targetForeignKey' => 'dhara_id',
-            'joinTable' => 'mamlas_dharas'
-        ]);
-    }
+    $this->setTable('mamlas');
+    $this->setDisplayField('title');
+    $this->setPrimaryKey('id');
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmptyString('id', 'create');
+    $this->addBehavior('Timestamp');
 
-        $validator
-            ->scalar('location')
-            ->maxLength('location', 255)
-            ->requirePresence('location', 'create')
-            ->allowEmptyString('location', false);
+    $this->belongsTo('Badis', [
+      'foreignKey' => 'badis_id',
+      'joinType' => 'INNER'
+    ]);
+    $this->belongsToMany('Ashamis', [
+      'foreignKey' => 'mamla_id',
+      'targetForeignKey' => 'ashami_id',
+      'joinTable' => 'mamlas_ashamis'
+    ]);
+    $this->belongsToMany('Dharas', [
+      'foreignKey' => 'mamla_id',
+      'targetForeignKey' => 'dhara_id',
+      'joinTable' => 'mamlas_dharas'
+    ]);
+  }
 
-        $validator
-            ->scalar('body')
-            ->allowEmptyString('body');
+  /**
+   * Default validation rules.
+   *
+   * @param \Cake\Validation\Validator $validator Validator instance.
+   * @return \Cake\Validation\Validator
+   */
+  public function validationDefault(Validator $validator)
+  {
+    $validator
+      ->integer('id')
+      ->allowEmptyString('id', 'create');
 
-        $validator
-            ->boolean('status')
-            ->allowEmptyString('status');
+    $validator
+      ->scalar('location')
+      ->maxLength('location', 255)
+      ->requirePresence('location', 'create')
+      ->allowEmptyString('location', false);
 
-        return $validator;
-    }
+    $validator
+      ->scalar('body')
+      ->allowEmptyString('body');
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['badis_id'], 'Badis'));
+    $validator
+      ->boolean('status')
+      ->allowEmptyString('status');
 
-        return $rules;
-    }
+    return $validator;
+  }
+
+  /**
+   * Returns a rules checker object that will be used for validating
+   * application integrity.
+   *
+   * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+   * @return \Cake\ORM\RulesChecker
+   */
+  public function buildRules(RulesChecker $rules)
+  {
+    $rules->add($rules->existsIn(['badis_id'], 'Badis'));
+
+    return $rules;
+  }
+
+
+
+
 }

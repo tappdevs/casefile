@@ -52,7 +52,7 @@
       <a class="nav-link" href="#">Users</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">Settings</a>
+      <?= $this->Html->link(__('Search'), ['controller'=>'Search','action' => 'index'], ['class' => 'nav-link']) ?>
     </li>
   </ul>
   <ul class="nav navbar-nav ml-auto">

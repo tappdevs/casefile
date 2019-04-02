@@ -34,7 +34,7 @@
       <?php foreach ($mamlas as $mamla): ?>
         <tr>
           <td class="text-center"><?= $this->Number->format($mamla->id) ?></td>
-          <td><?= $this->Number->format($mamla->mamla_no) ?></td>
+          <td><?= $mamla->mamla_no ?></td>
           <td class="text-truncate"><?= $mamla->has('badi') ? $this->Html->link($mamla->badi->name, ['controller' => 'Badis', 'action' => 'view', $mamla->badi->id]) : '' ?></td>
           <td><?= h($mamla->location) ?></td>
           <td class="text-center"><?= $mamla->status == 1 ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-close text-danger"></i>'; ?></td>

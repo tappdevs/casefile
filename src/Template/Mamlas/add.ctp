@@ -35,7 +35,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <?= $this->Form->control('as  hamis._ids', ['options' => $ashamis, 'class' => 'form-control']); ?>
+              <?= $this->Form->control('ashamis._ids', ['options' => $ashamis, 'class' => 'form-control']); ?>
             </div>
             <div class="form-group col-md-6">
               <?= $this->Form->control('dharas._ids', ['options' => $dharas, 'class' => 'form-control']); ?>
